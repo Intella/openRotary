@@ -63,6 +63,9 @@ class OpenRotary {
                                      void (*_rotaryTurnLeftCallback)(void));  
    void setRotaryCountBoundaries    (int _rotaryMinCount, int _rotaryMaxCount);        // set boundaries of the button counter (from minCount to MaxCount)
    int  getRotaryCount              (void);                                            // returns the current rotaryCount
+   void setRotaryCount              (uint8_t _rotaryCount);                            // set rotary counter 
+   bool getDirection                (void);                                            // true while turning right, false else
+
   
   private:
     void (*rotaryButtonCallback)    (void);                                           
@@ -89,6 +92,7 @@ class OpenRotary {
     int       rotaryButtonDebounceDelay;        // button debounce delay in ms
     int       rotaryLastDebounceTime;           // value which holds the last debounce time
     int       lastRotaryButtonState;            // value which stores the last rotary button state
+    bool      leftRightDirection;               // turning right = true, left = low
    
 };
 

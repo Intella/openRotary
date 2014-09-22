@@ -165,6 +165,7 @@ void OpenRotary::rotaryRotationCheck (void)
       int readingLeftRight = digitalRead(rotaryRotationDirectionPin);
       if (readingLeftRight == LOW)         // Turn right
       {
+        leftRightDirection = true;
         if ((rotaryCountSupported == true) && (rotaryCount < rotaryMaxCount))
            rotaryCount++;
            
@@ -172,7 +173,8 @@ void OpenRotary::rotaryRotationCheck (void)
          
       }
       else
-      {    
+      {   
+        leftRightDirection = false; 
         if ((rotaryCountSupported == true) && (rotaryCount > rotaryMinCount))
            rotaryCount--;
            
@@ -182,3 +184,12 @@ void OpenRotary::rotaryRotationCheck (void)
   }
   rotaryLastState = reading;
 }
+
+bool OpenRotary::getDirection            (void) {
+  if (leftRightDirection)  return true;
+  else                     return false;
+}
+void OpenRotary::setRotaryCount  (uint8_t _rotaryCount) {
+  rotaryCount = _rotaryCount;
+}
+
